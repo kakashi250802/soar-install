@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- The Soar app icon: the wing mark on the renderer clear color (#121214), full bleed; platforms round the corners. -->
+  <rect width="1024" height="1024" fill="#121214"/>
+  <g transform="translate(512 527) scale(20) translate(-16 -13.75)">
+    <defs>
+      <linearGradient id="w" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FAFAFA"/>
+        <stop offset="1" stop-color="#A1A1AA"/>
+      </linearGradient>
+    </defs>
+    <g fill="url(#w)">
+      <path d="M15.2 10.6C12 6.4 7.4 3.6 1.2 3.4c.9 2 1.7 3.5 2.9 4.7l-1.7.6c.9 1.8 2 3.1 3.2 3.9l-1.6.8c1 1.8 2.2 3 3.5 3.6l-1.3 1c1.3 1.6 2.7 2.6 4.1 3.1l-.7 1.2c1.7 1.1 3.5 1.7 5.6 1.6z"/>
+      <path d="M14.6 13.2C12.4 10.9 9.6 9.4 6.4 8.9M14.5 16.3c-2.1-1.6-4.6-2.6-7.3-3M14.4 19.4c-1.8-1.1-3.8-1.8-5.9-2.2M14.5 22.1c-1.3-.6-2.7-1-4.2-1.3" fill="none" stroke="#71717A" stroke-width=".55" stroke-linecap="round"/>
+    </g>
+    <g fill="url(#w)" transform="matrix(-1 0 0 1 32 0)">
+      <path d="M15.2 10.6C12 6.4 7.4 3.6 1.2 3.4c.9 2 1.7 3.5 2.9 4.7l-1.7.6c.9 1.8 2 3.1 3.2 3.9l-1.6.8c1 1.8 2.2 3 3.5 3.6l-1.3 1c1.3 1.6 2.7 2.6 4.1 3.1l-.7 1.2c1.7 1.1 3.5 1.7 5.6 1.6z"/>
+      <path d="M14.6 13.2C12.4 10.9 9.6 9.4 6.4 8.9M14.5 16.3c-2.1-1.6-4.6-2.6-7.3-3M14.4 19.4c-1.8-1.1-3.8-1.8-5.9-2.2M14.5 22.1c-1.3-.6-2.7-1-4.2-1.3" fill="none" stroke="#71717A" stroke-width=".55" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

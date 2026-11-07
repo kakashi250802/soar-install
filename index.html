@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install Soar</title>
+<meta name="description" content="Install the Soar command line tools and VS Code extension, then create and run your first app.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --code-bg: #f4f4f5;
+    --text: #18181b;
+    --muted: #52525b;
+    --border: #e4e4e7;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --warn-bg: #fef9c3;
+    --warn-text: #713f12;
+    --hero-bg: #121214;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0b0d;
+      --surface: #141417;
+      --code-bg: #1c1c21;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --border: #27272a;
+      --accent: #60a5fa;
+      --accent-soft: #172554;
+      --warn-bg: #2a2410;
+      --warn-text: #fde68a;
+      --hero-bg: #000000;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--accent); }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; }
+  :not(pre) > code { background: var(--code-bg); padding: 1px 6px; border-radius: 6px; }
+
+  header.hero { background: var(--hero-bg); color: #fafafa; padding: 56px 16px 48px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header.hero .wrap { padding: 0; display: flex; gap: 20px; align-items: center; }
+  header.hero img { width: 64px; height: 64px; flex: none; }
+  header.hero h1 { margin: 0; font-size: 34px; line-height: 1.2; }
+  header.hero p { margin: 6px 0 0; color: #a1a1aa; }
+
+  main { padding: 32px 0 64px; }
+  section { margin: 0 0 40px; }
+  h2 { font-size: 22px; margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+  h2 .step {
+    display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none;
+    border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 15px;
+  }
+  h3 { font-size: 17px; margin: 20px 0 8px; }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 22px; }
+
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin: 0 0 12px; flex-wrap: wrap; }
+  .tabs button {
+    font: inherit; font-size: 15px; background: none; color: var(--muted); border: 0;
+    border-bottom: 2px solid transparent; padding: 8px 12px; cursor: pointer; margin-bottom: -1px;
+  }
+  .tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  .panel[hidden] { display: none; }
+
+  .cmd {
+    position: relative; background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 10px; margin: 0 0 12px;
+  }
+  .cmd pre { margin: 0; padding: 14px 64px 14px 16px; overflow-x: auto; white-space: pre; }
+  .cmd button {
+    position: absolute; top: 8px; right: 8px; font: inherit; font-size: 13px; cursor: pointer;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 3px 10px;
+  }
+  .note {
+    background: var(--warn-bg); color: var(--warn-text); border-radius: 10px;
+    padding: 12px 16px; margin: 0 0 12px; font-size: 15px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 12px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  .table-scroll { overflow-x: auto; }
+  footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding: 24px 0 40px; }
+
+  @media (max-width: 520px) {
+    header.hero { padding: 36px 16px 32px; }
+    header.hero h1 { font-size: 28px; }
+    header.hero img { width: 48px; height: 48px; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <img src="logo.svg" alt="">
+    <div>
+      <h1>Install Soar</h1>
+      <p>A mobile UI engine with a Rust core. Write apps in TSX, run them on the GPU.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2><span class="step">1</span>Install the command line tools</h2>
+    <p>One command installs <code>soar</code> and the <code>soar-desktop</code> host it runs apps in,
+      plus the VS Code extension when VS Code is installed. Rerun it to update.</p>
+    <div class="tabs" role="tablist" aria-label="Operating system">
+      <button role="tab" id="tab-unix" aria-controls="panel-unix" aria-selected="true">macOS and Linux</button>
+      <button role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false">Windows</button>
+    </div>
+    <div class="panel" id="panel-unix" role="tabpanel" aria-labelledby="tab-unix">
+      <div class="cmd"><pre>curl -fsSL https://kakashi250802.github.io/soar-install/install.sh | sh</pre></div>
+      <p>It installs to <code>~/.soar/bin</code> and prints the line that adds it to your PATH. Then
+        open a new terminal and check:</p>
+      <div class="cmd"><pre>soar --version</pre></div>
+    </div>
+    <div class="panel" id="panel-win" role="tabpanel" aria-labelledby="tab-win" hidden>
+      <p>In PowerShell:</p>
+      <div class="cmd"><pre>irm https://kakashi250802.github.io/soar-install/install.ps1 | iex</pre></div>
+      <p>It installs to <code>%USERPROFILE%\.soar\bin</code> and adds it to your PATH. Open a new
+        terminal and run <code>soar --version</code>.</p>
+    </div>
+    <p>Prefer to download by hand? Every file is on the
+      <a href="https://github.com/kakashi250802/soar-install/releases/latest">latest release</a>:
+      unpack the archive for your platform and keep <code>soar</code> and <code>soar-desktop</code> in
+      the same folder.</p>
+  </section>
+
+  <section>
+    <h2><span class="step">2</span>Set up VS Code</h2>
+    <p>The Soar extension gives <code>.soar</code> files highlighting, type checking against the
+      Soar SDK, <code>@/</code> imports, auto import and a file icon. The install script adds it
+      when the <code>code</code> command exists; otherwise download <code>soar-vscode.vsix</code>
+      from the release and pick <em>Extensions → … → Install from VSIX</em>.</p>
+    <ul>
+      <li>Also install <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a>:
+        projects made by <code>soar new</code> format <code>.soar</code> files on save with it.</li>
+      <li>Reload VS Code after installing (<em>Developer: Reload Window</em>).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="step">3</span>Create and run an app</h2>
+    <div class="cmd"><pre>soar new my-app
+cd my-app
+soar start</pre></div>
+    <p><code>soar start</code> opens the app in a desktop window. Edit <code>src/App.soar</code> while
+      it runs: it reloads in place and keeps its state.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>soar new DIR</code></td><td>Creates a project: <code>soar.json</code>, <code>src/App.soar</code>, SDK types and editor settings.</td></tr>
+          <tr><td><code>soar start</code></td><td>Runs the app on the desktop with hot reload.</td></tr>
+          <tr><td><code>soar check</code></td><td>Compiles and verifies the app, with errors as <code>file:line:column</code>.</td></tr>
+          <tr><td><code>soar build -o app.soarb</code></td><td>Compiles the app to a bundle.</td></tr>
+          <tr><td><code>soar devtools</code></td><td>Opens a browser DevTools for the running app: console, elements, network, state.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What the download covers</h2>
+    <p>The download runs apps on the desktop. Running on a phone (<code>soar run ios</code>,
+      <code>soar run android</code>) still builds the native hosts from the Soar engine source, which
+      is not public yet.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Platform</th><th>Download</th></tr></thead>
+        <tbody>
+          <tr><td>macOS, Apple silicon</td><td><code>soar-aarch64-apple-darwin.tar.gz</code></td></tr>
+          <tr><td>macOS, Intel</td><td><code>soar-x86_64-apple-darwin.tar.gz</code></td></tr>
+          <tr><td>Linux, x86-64</td><td><code>soar-x86_64-unknown-linux-gnu.tar.gz</code></td></tr>
+          <tr><td>Windows, x86-64</td><td><code>soar-x86_64-pc-windows-msvc.zip</code></td></tr>
+          <tr><td>VS Code</td><td><code>soar-vscode.vsix</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><code>SHA256SUMS</code> on each release lists the checksum of every file.</p>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+    <h3><code>soar: command not found</code></h3>
+    <p>The install folder is not on your PATH yet. Run the <code>export PATH=…</code> line the script
+      printed, or open a new terminal after adding it to your shell profile.</p>
+    <h3>macOS says the app “cannot be opened”</h3>
+    <p>The binaries are not notarized yet. The install script avoids the warning; for a manual
+      download, clear the quarantine flag once:</p>
+    <div class="cmd"><pre>xattr -d com.apple.quarantine soar soar-desktop</pre></div>
+    <h3>A specific version</h3>
+    <div class="cmd"><pre>curl -fsSL https://kakashi250802.github.io/soar-install/install.sh | SOAR_VERSION=v0.1.0 sh</pre></div>
+    <h3>Uninstall</h3>
+    <p>Delete <code>~/.soar</code> (Windows: <code>%USERPROFILE%\.soar</code>), remove it from your
+      PATH, and uninstall the Soar extension in VS Code.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Soar is MIT licensed. Releases: <a href="https://github.com/kakashi250802/soar-install/releases">github.com/kakashi250802/soar-install</a>
+  </div>
+</footer>
+
+<script>
+  // Copy buttons on every command block.
+  document.querySelectorAll(".cmd").forEach(function (box) {
+    var button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Copy";
+    button.addEventListener("click", function () {
+      var text = box.querySelector("pre").textContent;
+      var done = function () {
+        button.textContent = "Copied";
+        setTimeout(function () { button.textContent = "Copy"; }, 1500);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+    });
+    box.appendChild(button);
+  });
+
+  // Operating system tabs; Windows visitors start on the Windows tab.
+  var tabs = document.querySelectorAll('[role="tab"]');
+  function select(id) {
+    tabs.forEach(function (tab) {
+      var on = tab.id === id;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById(tab.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (tab) { tab.addEventListener("click", function () { select(tab.id); }); });
+  if (/Windows/.test(navigator.userAgent)) select("tab-win");
+</script>
+</body>
+</html>
